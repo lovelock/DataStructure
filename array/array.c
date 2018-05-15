@@ -2,10 +2,7 @@
 #include <stdio.h>
 #include "array.h"
 
-bool TRUE = 1;
-bool FALSE = 0;
-
-bool array_init(array *arr, int cap) {
+int array_init(array *arr, int cap) {
     arr->pBase = (int *) malloc(sizeof(int) * cap);
     if (arr->pBase == NULL) {
         return FALSE;
@@ -16,15 +13,15 @@ bool array_init(array *arr, int cap) {
     return TRUE;
 }
 
-bool array_is_empty(array *arr) {
+int array_is_empty(array *arr) {
     return arr->cap == 0;
 }
 
-bool array_is_full(array *arr) {
+int array_is_full(array *arr) {
     return arr->cap == arr->len;
 }
 
-bool array_get(array *arr, int index, int *value) {
+int array_get(array *arr, int index, int *value) {
     if (array_is_empty(arr)) {
         printf("array arr is empty\n");
         return FALSE;
@@ -50,7 +47,7 @@ void array_show(array *arr) {
     printf("\n");
 }
 
-bool array_insert(array *arr, int index, int data) {
+int array_insert(array *arr, int index, int data) {
     if (array_is_full(arr)) {
         printf("array is full, no elements can be inserted\n");
         return FALSE;
@@ -73,19 +70,19 @@ bool array_insert(array *arr, int index, int data) {
     return TRUE;
 }
 
-bool array_append(array *arr, int data) {
+int array_append(array *arr, int data) {
     return array_insert(arr, arr->len, data);
 }
 
-bool array_prepend(array *arr, int data) {
+int array_prepend(array *arr, int data) {
     return array_insert(arr, 0, data);
 }
 
-bool array_unshift(array *arr, int data) {
+int array_unshift(array *arr, int data) {
     return array_prepend(arr, data);
 }
 
-bool array_delete(array *arr, int index, int *value) {
+int array_delete(array *arr, int index, int *value) {
     if (array_is_empty(arr)) {
         printf("array is empty\n");
         return FALSE;
@@ -108,11 +105,11 @@ bool array_delete(array *arr, int index, int *value) {
     return TRUE;
 }
 
-bool array_pop(array *arr, int *value) {
+int array_pop(array *arr, int *value) {
     return array_delete(arr, arr->len - 1, value);
 }
 
-bool array_shift(array *arr, int *value) {
+int array_shift(array *arr, int *value) {
     return array_delete(arr, 0, value);
 }
 
