@@ -3,22 +3,37 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
-int linkedlist_init(p_linkedlist_t head, int data) {
-    // create node with given data
-    p_linkedlist_t node = (p_linkedlist_t) malloc(sizeof(linkedlist_t));
-    if (node == NULL) {
-        printf("create linkedlist node failed\n");
-        return FALSE;
+p_linkedlist_t linkedlist_init() {
+
+    int len, val;
+    printf("Please enter a length for the linkedlist\n");
+    scanf("%d", &len);
+
+    if (len <= 0) {
+        printf("len must be unsigned\n");
+        exit(1);
     }
-    node->data = data;
 
-    // point head node's pNext to node
-    head->pNext = node;
+    p_linkedlist_t p_head = (p_linkedlist_t)malloc(sizeof(linkedlist_t));
+    if (NULL == p_head) {
+        printf("create p_head failed, exiting\n");
+        exit(1);
+    }
+    p_linkedlist_t p_tail = p_head;
+    p_tail->pNext = NULL;
 
-    // point valid node's pNext to NULL
-    node->pNext = NULL;
+    while (len-- > 0) {
+        printf("enter a number: \t");
+        scanf("%d", &val);
 
-    return TRUE;
+        p_linkedlist_t p_new = (p_linkedlist_t)malloc(sizeof(linkedlist_t));
+        p_new->data = val;
+        p_tail->pNext = p_new;
+        p_new->pNext = NULL;
+        p_tail = p_new;
+    }
+
+    return p_head;
 }
 
 void linkedlist_show(p_linkedlist_t head) {

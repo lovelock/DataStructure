@@ -10,7 +10,7 @@ typedef struct linkedlist {
     struct linkedlist *pNext;
 } *p_linkedlist_t, linkedlist_t;
 
-int linkedlist_init(p_linkedlist_t, int);
+p_linkedlist_t linkedlist_init();
 void linkedlist_show(p_linkedlist_t);
 int linkedlist_insert(p_linkedlist_t, int, int);
 int linkedlist_append(p_linkedlist_t, int);
