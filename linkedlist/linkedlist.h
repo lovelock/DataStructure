@@ -5,9 +5,9 @@
 #ifndef DATASTRUCTURE_LINKEDLIST_H
 #include "../common.h"
 
-typedef struct linkedlist {
+typedef struct node {
     int data;
-    struct linkedlist *pNext;
+    struct node *pNext;
 } *p_linkedlist_t, linkedlist_t;
 
 p_linkedlist_t linkedlist_init();
