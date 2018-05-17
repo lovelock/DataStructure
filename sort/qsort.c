@@ -1,22 +1,5 @@
 #include <stdio.h>
-
-#define N 6
-
-void qsort(int *, int, int);
-
-int main()
-{
-    int array[N] = {15, 23, 1, 34, 89, 43};
-
-    qsort(array, 0, N - 1);
-
-    int i;
-    for (i = 0; i < N; i++) {
-        printf("%d\n", array[i]);
-    }
-
-    return 0;
-}
+#include "qsort.h"
 
 
 void qsort(int *array, int low, int high) {
