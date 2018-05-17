@@ -50,3 +50,27 @@ void linkedlist_show(p_linkedlist_t head) {
 
     printf("\n\n\nend print linkedlist\n");
 }
+
+
+int linkedlist_insert(p_linkedlist_t p_head, int pos, int val)
+{
+    int i = 0;
+    p_linkedlist_t p = p_head;
+
+    while (p != NULL && ++i < pos) {
+        p = p->pNext;
+    }
+
+    p_linkedlist_t p_new = (p_linkedlist_t)malloc(sizeof(linkedlist_t));
+    if (p_new == NULL) {
+        printf("create p_new failed\n");
+        return FALSE;
+    }
+
+    p_new->data = val;
+    p_new->pNext = p->pNext;
+
+    p->pNext = p_new;
+
+    return TRUE;
+}
