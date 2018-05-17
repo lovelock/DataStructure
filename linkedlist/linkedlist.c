@@ -36,6 +36,21 @@ p_linkedlist_t linkedlist_init() {
     return p_head;
 }
 
+int linkedlist_length(p_linkedlist_t p_head) {
+    int len = 0;
+
+    p_linkedlist_t pt = p_head->pNext;
+
+    while(pt != NULL) {
+        len++;
+        pt = pt->pNext;
+    }
+
+    free(pt);
+
+    return len;
+}
+
 void linkedlist_show(p_linkedlist_t head) {
     printf("linkedlist is below\n");
 
@@ -58,7 +73,14 @@ int linkedlist_insert(p_linkedlist_t p_head, int pos, int val)
     p_linkedlist_t p = p_head;
 
     while (p != NULL && ++i < pos) {
+        printf("\ni: %d\n", i);
+        printf("address of p: %p\n", p);
         p = p->pNext;
+    }
+
+    if (p == NULL) {
+        printf("skip insert\n");
+        return FALSE;
     }
 
     p_linkedlist_t p_new = (p_linkedlist_t)malloc(sizeof(linkedlist_t));
@@ -74,3 +96,49 @@ int linkedlist_insert(p_linkedlist_t p_head, int pos, int val)
 
     return TRUE;
 }
+
+int linkedlist_append(p_linkedlist_t p_head, int val) {
+    int len = linkedlist_length(p_head);
+
+    return linkedlist_insert(p_head, len+1, val);
+}
+
+int linkedlist_prepend(p_linkedlist_t p_head, int val) {
+    return linkedlist_insert(p_head, 0, val);
+}
+
+int linkedlist_delete(p_linkedlist_t p_head, int pos, int *val) {
+    int i = 0;
+    p_linkedlist_t p = p_head;
+
+    while (p != NULL && ++i < pos) {
+        printf("\ni: %d\n", i);
+        printf("address of p: %p\n", p);
+        p = p->pNext;
+    }
+
+    if (p->pNext == NULL) {
+        printf("skip delete\n");
+        return FALSE;
+    }
+
+    p_linkedlist_t q = p->pNext;
+    *val = q->data;
+    p->pNext = p->pNext->pNext;
+    free(q);
+
+    printf("p->data: %d\n", p->data);
+
+
+    return TRUE;
+}
+
+int linkedlist_pop(p_linkedlist_t p_head, int *val) {
+    return linkedlist_delete(p_head, linkedlist_length(p_head), val);
+}
+
+int linkedlist_shift(p_linkedlist_t p_head, int *val) {
+    return linkedlist_delete(p_head, 0, val);
+}
+
+
