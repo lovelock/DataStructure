@@ -12,6 +12,7 @@ int stack_init(p_stack_t p_stack) {
 
     p_stack->p_bottom = p_bottom;
     p_stack->p_top = p_top;
+    p_stack->p_bottom->p_next = NULL;
 
     return 1;
 }

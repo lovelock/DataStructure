@@ -30,6 +30,7 @@ int main() {
     stack_pop(&stack, &val);
     stack_pop(&stack, &val);
     stack_pop(&stack, &val);
+    stack_pop(&stack, &val);
     printf("val popped out: %d\n", val);
     stack_print(&stack);
     printf("-------incorrect pop stop--------\n");
