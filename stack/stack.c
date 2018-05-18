@@ -45,7 +45,7 @@ int stack_pop(p_stack_t p_stack, int *val) {
 void stack_print(p_stack_t p_stack) {
     p_node_t p = p_stack->p_top;
 
-    while (NULL != p->p_next) {
+    while (p != p_stack->p_bottom) {
         printf("%d\n", p->data);
         p = p->p_next;
     }
