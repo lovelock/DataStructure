@@ -2,7 +2,7 @@
 
 void hanoi(int n, char A, char B, char C) {
     if (n == 1) {
-        printf("1: %c => %c\n", A, C);
+        printf("%d: %c => %c\n", n, A, C);
     } else {
         hanoi(n-1, A, C, B);
         printf("%d: %c => %c\n", n, A, C);
